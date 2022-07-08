@@ -16,8 +16,13 @@ var FormView = {
 
     // TODO: Currently, this is all handleSubmit does.
     // Make this function actually send a message to the Parse API.
+<<<<<<< HEAD
 
     console.log('clicked on submit button');
+=======
+    Parse.create('test message', function() {console.log('submit was handled');});
+    console.log('click!');
+>>>>>>> f43c0eec39ce8307f9ce6adcd7ad62811ec0325a
   },
 
   setStatus: function(active) {

@@ -37,6 +37,8 @@ var App = {
       // console.log(Messages._data);
 
 
+      // cb fn stops spinner
+      callback();
       // TODO: Use the data to update Messages and Rooms
       // and re-render the corresponding views.
     });

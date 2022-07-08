@@ -26,20 +26,31 @@ var App = {
   fetch: function(callback = ()=>{}) {
     Parse.readAll((data) => {
       // examine the response from the server request:
+      //console.log(data); // data is an array
+      // iterate through data and push to _data
       console.log(data);
+      for (var i = 0; i < data.length; i++) {
+        Messages._data.push(data[i]);
+      }
+
+      MessagesView.render();
+      // console.log(Messages._data);
+
 
       // TODO: Use the data to update Messages and Rooms
       // and re-render the corresponding views.
     });
+    callback();
+    //or do we add callback here?
   },
 
   startSpinner: function() {
     App.$spinner.show();
-    FormView.setStatus(true);
+    FormView.setStatus(true); //what is this doing?
   },
 
   stopSpinner: function() {
     App.$spinner.fadeOut('fast');
-    FormView.setStatus(false);
+    FormView.setStatus(false); //what is this doing?
   }
 };

@@ -21,18 +21,14 @@ var MessagesView = {
     for (var i = 0; i < Messages._data.length; i++) {
       MessagesView.renderMessage(Messages._data[i]);
     }
-    // MessagesView.$chats.append(html);
-    // console.log(html);
-
   },
 
   renderMessage: function(message) {
     // TODO: Render a single message.
-    var html = "";
+    console.log("rendering Message");
+    var html = '';
     html += MessageView.render(message);
-    MessagesView.$chats.append(html);
-    console.log(html);
-    //return MessageView.render(message);
+    MessagesView.$chats.prepend(html);
 
   },
 

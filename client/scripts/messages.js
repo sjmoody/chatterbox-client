@@ -9,8 +9,35 @@ var Messages = {
 
   // TODO: Define methods which allow you to retrieve from,
   // add to, and generally interact with the messages.
-  iterateData: function (data) {
 
+  sanitizeAndPush: function(message) {
+    // remove script and brackets
+    // then push into _.data;
+    //
+
+    // sanitizing the message
+    if (message.text && message.text.includes('<')) {
+      message.text = 'failed hack';
+    }
+
+
+    //if array does not contain item with this message_id then push into array
+    if (Messages._data.filter(function(m) { return m.message_id === message.message_id; }).length > 0) {
+      console.log("duplicate Mofo!");
+    } else {
+
+      // console.log(message.message_id);
+      Messages._data.push(message);
+    }
+
+  },
+
+  getRoomMessages: function(roomName) {
+    console.log(roomName);
+    console.log(Messages._data);
+    return _.filter(Messages._data, function(i) {
+      return i === roomName;
+    });
   }
 
   // data[0]

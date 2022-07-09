@@ -21,24 +21,20 @@ var App = {
 
     // TODO: Make sure the app loads data from the API
     // continually, instead of just once at the start.
+
   },
 
   fetch: function(callback = ()=>{}) {
     Parse.readAll((data) => {
-      // examine the response from the server request:
-      //console.log(data); // data is an array
-      // iterate through data and push to _data
       console.log(data);
       for (var i = 0; i < data.length; i++) {
-        Messages._data.push(data[i]);
+        Messages.sanitizeAndPush(data[i]);
       }
 
       MessagesView.render();
       // console.log(Messages._data);
-
-
       // cb fn stops spinner
-      callback();
+      //callback();
       // TODO: Use the data to update Messages and Rooms
       // and re-render the corresponding views.
     });

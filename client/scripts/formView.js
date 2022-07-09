@@ -14,15 +14,30 @@ var FormView = {
     // Stop the browser from submitting the form
     event.preventDefault();
 
-    // TODO: Currently, this is all handleSubmit does.
-    // Make this function actually send a message to the Parse API.
-<<<<<<< HEAD
+    var text = $('#message').val();
+    var message = {
+      roomname: 'superLobby',
+      text: text,
+      username: App.username
+    };
 
-    console.log('clicked on submit button');
-=======
-    Parse.create('test message', function() {console.log('submit was handled');});
-    console.log('click!');
->>>>>>> f43c0eec39ce8307f9ce6adcd7ad62811ec0325a
+    console.log(message);
+    //Parse.create(message, function() { console.log('submit was handled in formView'); });
+    //Parse.create(message, function() { App.fetch(); });
+    // Messages._data.push(message);
+    Messages.sanitizeAndPush(message);
+    Parse.create(message, function() { App.startSpinner(); App.fetch(App.stopSpinner); });
+    //Parse.create(message, function() { App.initialize(); });
+    //Parse.create(message, function() { MessagesView.renderMessage(message); });
+    //App.startSpinner();
+    //App.fetch(App.stopSpinner);
+    // After we create message on server we want to
+      // get all new messages from server
+      // render all messages
+    //setTimeout(App.initialize(), 1000);
+      // App.fetch();
+    MessagesView.render();
+
   },
 
   setStatus: function(active) {

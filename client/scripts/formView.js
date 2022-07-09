@@ -11,33 +11,18 @@ var FormView = {
   },
 
   handleSubmit: function(event) {
-    // Stop the browser from submitting the form
-    event.preventDefault();
-
     var text = $('#message').val();
     var message = {
-      roomname: 'superLobby',
+      roomname: App.roomname,
       text: text,
       username: App.username
     };
 
-    console.log(message);
-    //Parse.create(message, function() { console.log('submit was handled in formView'); });
-    //Parse.create(message, function() { App.fetch(); });
-    // Messages._data.push(message);
-    Messages.sanitizeAndPush(message);
-    Parse.create(message, function() { App.startSpinner(); App.fetch(App.stopSpinner); });
-    //Parse.create(message, function() { App.initialize(); });
-    //Parse.create(message, function() { MessagesView.renderMessage(message); });
-    //App.startSpinner();
-    //App.fetch(App.stopSpinner);
-    // After we create message on server we want to
-      // get all new messages from server
-      // render all messages
-    //setTimeout(App.initialize(), 1000);
-      // App.fetch();
-    MessagesView.render();
+    event.preventDefault();
 
+    //Messages.sanitizeAndPush(message);
+    Parse.create(message, function() { App.startSpinner(); App.fetch(App.stopSpinner); });
+    //Parse.create(message, function() { MessagesView.render(); });
   },
 
   setStatus: function(active) {

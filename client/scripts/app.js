@@ -7,6 +7,7 @@ var App = {
   $spinner: $('.spinner img'),
 
   username: 'anonymous',
+  roomname: null,
 
   initialize: function() {
     App.username = window.location.search.substr(10);
@@ -21,6 +22,7 @@ var App = {
 
     // TODO: Make sure the app loads data from the API
     // continually, instead of just once at the start.
+    //setTimeout(function() { App.initialize(); }, 10000);
 
   },
 
@@ -29,9 +31,12 @@ var App = {
       console.log(data);
       for (var i = 0; i < data.length; i++) {
         Messages.sanitizeAndPush(data[i]);
+        Rooms.sanitizeAndPush(data[i]);
       }
 
       MessagesView.render();
+      RoomsView.render();
+
       // console.log(Messages._data);
       // cb fn stops spinner
       //callback();
@@ -44,11 +49,11 @@ var App = {
 
   startSpinner: function() {
     App.$spinner.show();
-    FormView.setStatus(true); //what is this doing?
+    FormView.setStatus(true);
   },
 
   stopSpinner: function() {
     App.$spinner.fadeOut('fast');
-    FormView.setStatus(false); //what is this doing?
+    FormView.setStatus(false);
   }
 };

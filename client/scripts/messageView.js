@@ -23,6 +23,7 @@ var MessageView = {
         </div>
         <div>
         <%= text %>
+        <%= message_id %>
 
         </div>
         <div></div>

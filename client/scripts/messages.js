@@ -43,7 +43,7 @@ var Messages = {
         if (Messages._data[i].roomname === App.roomname) {
           roomarray.push(Messages._data[i]);
         } else {
-          console.log(App.roomname + Messages._data[i].roomname);
+          // console.log(App.roomname + Messages._data[i].roomname);
         }
       }
       // var roomarray = _.filter(Messages._data, function(message) {

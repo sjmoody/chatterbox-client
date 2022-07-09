@@ -6,13 +6,15 @@ var Rooms = {
 
   // TODO: Define how you want to store the list of rooms
   // _data: ['1', '2', '3'],
-  _data: [],
-  // TODO: Define methods which allow you to add rooms, update the list,
-  // mark a room as selected, etc.
+  _data: ["all"],
+
+
+  add: function(room) {
+    Rooms._data.push(room);
+  },
+
+
   sanitizeAndPush: function(message) {
-    // remove script and brackets
-    // then push into _.data;
-    //
 
     // sanitizing the message
     if (message.roomname && message.roomname.includes('<')) {
@@ -24,15 +26,8 @@ var Rooms = {
       //console.log(message.roomname);
       Rooms._data.push(message.roomname);
     }
-    // console.log(Rooms._data);
 
-    // if (Rooms._data.filter(function(m) { return m.roomname === message.roomname; }).length > 0) {
-    //   return;
-    // } else {
-    //   Rooms._data.push(message.roomname);
-    // }
 
   }
 
-  // figure out how to interact with the rooms here
 };

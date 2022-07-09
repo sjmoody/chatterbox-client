@@ -26,17 +26,13 @@ var RoomsView = {
   },
 
   renderRoom: function(roomname = "no room here") {
-    // helper function for render which produces the view from model
-    // input roomname
-    // side effect: we want to add roomname to roomsView html menu options
-    // make roomname dynamic in label and maybe value
+
     var html = '';
 
     // create HTML for the room name which is probably an option tag
     // we want to append the html to the RoomsView
     var compiled = _.template("<option value='1'> <%- rn  %> </option>");
-    //html += _.template("<option value='1'> <%= roomname  %> </option>");
-    //compiled({rn: 'test name'});
+
     html += compiled({rn: roomname});
     // console.log(html);
     RoomsView.$select.append(html);
@@ -46,13 +42,8 @@ var RoomsView = {
   },
 
   handleChange: function(event) {
-    // TODO: Handle a user selecting a different room.
-    // console.log(this);
-    // console.log('changed room: ');
-    // console.log(event);
     var getText = $(this).find(':selected').text();
-    // alert(getText);
-    // alert(this.innerHTML);
+
     App.roomname = getText.trim();
     MessagesView.render();
   },
@@ -60,11 +51,14 @@ var RoomsView = {
   handleClick: function(event) {
     // TODO: Handle the user clicking the "Add Room" button.
     console.log("clicked room: " + event);
-    // popup input box to get roomname
-    // pass roomname to a Rooms function to add room to the Rooms._data
-    var newRoom = 'roomname=' + (prompt('what is the new room name?') || "new Unnamed room");
-
+    var newRoom = (prompt('what is the new room name?') || "new Unnamed room");
     // pass newRoom to a rooms function
+    Rooms.add(newRoom);
+    App.roomname = newRoom;
+    RoomsView.render();
+    MessagesView.render();
+
+
   }
 
 };
